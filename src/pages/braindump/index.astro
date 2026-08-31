@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../../layouts/SectionLayout.astro';
+
+const posts = (await getCollection('braindump', ({ data }) => !data.draft))
+  .sort((a, b) =>
+    ((b.data.publishedDate ?? b.data.updatedDate)?.valueOf() ?? 0) - ((a.data.publishedDate ?? a.data.updatedDate)?.valueOf() ?? 0)
+  );
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+const formatDate = (date: Date) => new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' }).format(date);
+---
+
+<SectionLayout title="Brain Dump — broccosite" description="Personal posts." section="braindump">
+  <header class="section-hero simple page-width"><h1>brain dump</h1></header>
+  <section class="timeline-section page-width" aria-label="Posts">
+    <div class="filter-row" aria-label="Filter posts by tag">
+      <button class="filter-chip active" type="button" data-tag-filter="all" aria-pressed="true">all</button>
+      {tags.map((tag) => (
+        <button class="filter-chip" type="button" data-tag-filter={tag} aria-pressed="false">{tag}</button>
+      ))}
+    </div>
+    <div class="timeline">
+      {posts.map((post) => (
+        <article class="timeline-entry" data-post-tags={JSON.stringify(post.data.tags)}>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          {(post.data.publishedDate ?? post.data.updatedDate) && (
+            <time datetime={(post.data.publishedDate ?? post.data.updatedDate)?.toISOString()}>{formatDate((post.data.publishedDate ?? post.data.updatedDate)!)}</time>
+          )}
+          <h3><a href={`/braindump/${post.id}/`}>{post.data.title}</a></h3>
+          <div class="tag-row">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
+        </article>
+      ))}
+    </div>
+  </section>
+</SectionLayout>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-tag-filter]');
+  const postEntries = document.querySelectorAll<HTMLElement>('[data-post-tags]');
+
+  for (const button of filterButtons) {
+    button.addEventListener('click', () => {
+      const selectedTag = button.dataset.tagFilter ?? 'all';
+
+      for (const candidate of filterButtons) {
+        const isActive = candidate === button;
+        candidate.classList.toggle('active', isActive);
+        candidate.setAttribute('aria-pressed', String(isActive));
+      }
+
+      for (const post of postEntries) {
+        const postTags = JSON.parse(post.dataset.postTags ?? '[]') as string[];
+        post.hidden = selectedTag !== 'all' && !postTags.includes(selectedTag);
+      }
+    });
+  }
+</script>
+
+<style>
+  .filter-chip { cursor: pointer; }
+  .filter-chip:hover { color: var(--leaf-dark); border-color: #a7e3c2; }
+  .filter-chip:focus-visible { outline: 3px solid color-mix(in srgb, var(--leaf) 45%, transparent); outline-offset: 2px; }
+  .timeline-entry[hidden] { display: none; }
+</style>

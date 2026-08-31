@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentArticle from '../../components/ContentArticle.astro';
+import SectionLayout from '../../layouts/SectionLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('braindump', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<SectionLayout title={`${post.data.title} — broccosite`} description={post.data.description ?? post.data.title} section="braindump">
+  <ContentArticle title={post.data.title} backHref="/braindump/" backLabel="brain dump" publishedDate={post.data.publishedDate} updatedDate={post.data.updatedDate}>
+    <Content />
+  </ContentArticle>
+</SectionLayout>

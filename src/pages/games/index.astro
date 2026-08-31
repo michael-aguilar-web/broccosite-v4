@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../../layouts/SectionLayout.astro';
+
+const notes = await getCollection('games', ({ data }) => !data.draft);
+const games = [
+  { name: 'teamfight tactics', href: '/games/tft/', image: '/images/games/tft.webp', imageWidth: 1200, imageHeight: 600, imageFit: 'cover', count: notes.filter((note) => note.data.game === 'tft').length },
+  { name: 'apex legends', href: '/games/apex/', image: '/images/games/apex.webp', imageWidth: 600, imageHeight: 600, imageFit: 'contain', count: notes.filter((note) => note.data.game === 'apex').length },
+];
+---
+
+<SectionLayout title="Game writeups — broccosite" description="Game writeups." section="games">
+  <header class="content-header category-title category-width"><h1>game writeups</h1></header>
+  <section class="game-grid category-grid category-width" aria-label="Games">
+    {games.map((game) => (
+      <a class="game-card minimal" href={game.href}>
+        <span class:list={['game-art', `game-art--${game.imageFit}`]}>
+          <img src={game.image} alt="" width={game.imageWidth} height={game.imageHeight} decoding="async" />
+        </span>
+        <span class="game-card-copy"><strong>{game.name}</strong></span>
+        <span class="game-count">{game.count} notes <span aria-hidden="true">→</span></span>
+      </a>
+    ))}
+  </section>
+</SectionLayout>

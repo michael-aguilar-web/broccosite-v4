@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../../layouts/SectionLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort((a, b) =>
+  ((b.data.publishedDate ?? b.data.updatedDate)?.valueOf() ?? 0) - ((a.data.publishedDate ?? a.data.updatedDate)?.valueOf() ?? 0)
+);
+const formatDate = (date: Date) => new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short' }).format(date);
+---
+
+<SectionLayout title="Projects — broccosite" description="Projects." section="projects">
+  <header class="content-header category-title category-width"><h1>projects</h1></header>
+  <section class="project-gallery category-grid category-width" aria-label="Projects">
+    {projects.map((project, index) => (
+      <a class:list={['project-card', { featured: project.data.featured }]} href={`/projects/${project.id}/`}>
+        <div class="project-image-wrap">
+          <img src={project.data.cover} alt={project.data.coverAlt} loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+        </div>
+        <div class="project-card-copy minimal">
+          {(project.data.publishedDate ?? project.data.updatedDate) && (
+            <span class="project-date">{formatDate((project.data.publishedDate ?? project.data.updatedDate)!)}</span>
+          )}
+          <h2>{project.data.title}</h2>
+          <span class="project-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+    ))}
+    <a class="professional-card minimal" href="https://michaelbaguilar.com" rel="noreferrer">
+      <strong>professional work</strong>
+      <span>michaelbaguilar.com <span aria-hidden="true">↗</span></span>
+    </a>
+  </section>
+</SectionLayout>

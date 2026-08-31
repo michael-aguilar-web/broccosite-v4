@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentArticle from '../../components/ContentArticle.astro';
+import SectionLayout from '../../layouts/SectionLayout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('games', ({ data }) => !data.draft);
+  return notes.map((note) => ({ params: { slug: note.id }, props: { note } }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+const gameName = note.data.game === 'tft' ? 'TFT' : 'Apex';
+---
+
+<SectionLayout title={`${note.data.title} — broccosite`} description={note.data.description ?? note.data.title} section="games">
+  <ContentArticle title={note.data.title} backHref={`/games/${note.data.game}/`} backLabel={gameName} publishedDate={note.data.publishedDate} updatedDate={note.data.updatedDate}>
+    <Content />
+  </ContentArticle>
+</SectionLayout>

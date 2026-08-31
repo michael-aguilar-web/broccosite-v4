@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../../../layouts/SectionLayout.astro';
+
+const notes = (await getCollection('games', ({ data, id }) => !data.draft && data.game === 'tft' && id.startsWith('tft/') && !id.slice(4).includes('/')))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<SectionLayout title="Teamfight Tactics — broccosite" description="TFT writeups." section="games">
+  <div class="game-landing page-width">
+    <a class="content-back-link" href="/games/">← all games</a>
+    <header class="game-title">
+      <h1>teamfight tactics</h1>
+    </header>
+    <section class="simple-index" aria-label="TFT notes">
+      <ol>{notes.map((note) => <li><a href={`/games/${note.id}/`}><span>{note.data.title}</span></a></li>)}</ol>
+    </section>
+  </div>
+</SectionLayout>

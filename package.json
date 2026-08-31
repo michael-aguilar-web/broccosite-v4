@@ -1,0 +1,22 @@
+{
+  "name": "broccosite-v4",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.8",
+    "astro": "^7.2.9",
+    "mermaid": "^11.17.2"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}

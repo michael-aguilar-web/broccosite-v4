@@ -1,0 +1,47 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import '../styles/home-links.css';
+
+const links = [
+  { label: 'twitter', href: 'https://twitter.com/Broccoccoccoli', icon: '/images/icons/twitter.png' },
+  { label: 'youtube', href: 'https://youtube.com/@Broccoccoccoli', icon: '/images/icons/youtube.png' },
+  { label: 'steam', href: 'https://steamcommunity.com/id/Broccoccoli/', icon: '/images/icons/steam.png' },
+  { label: 'spotify', href: 'https://open.spotify.com/user/broccoli_?si=6bd23e31398b4929&nd=1', icon: '/images/icons/spotify.png' },
+  { label: 'last.fm', href: 'https://www.last.fm/user/Broccoccoccoli', icon: '/images/icons/lastfm.png' },
+  { label: 'letterboxd', href: 'https://letterboxd.com/broccoli_/films/by/entry-rating/', icon: '/images/icons/letterboxd.png' },
+  { label: 'apex', href: 'https://apexlegendsstatus.com/profile/uid/PC/2654494079', icon: '/images/icons/apex.png', inactive: true },
+  { label: 'twitch', href: 'https://twitch.tv/broccoligg', icon: '/images/icons/twitch.png', inactive: true },
+  { label: 'tft', href: 'https://lolchess.gg/profile/na/Broccoli-veg/', icon: '/images/icons/riot.png', inactive: true },
+  { label: 'osu!', href: 'https://osu.ppy.sh/users/5870537', icon: '/images/icons/osu.png', inactive: true },
+];
+---
+
+<PageLayout title="broccosite" description="Broccoli’s personal site." section="home" pageClass="home-page">
+  <section class="home-intro page-width">
+    <h1>hello I’m <a class="text-link" href="/about/">Broccoli</a></h1>
+    <p>welcome to my personal site 🥦</p>
+  </section>
+
+  <section class="temporary-links page-width" aria-label="Links">
+    {links.map((item) => (
+      <a class:list={['temporary-link', { inactive: item.inactive }]} href={item.href} target="_blank" rel="noreferrer">
+        <img src={item.icon} alt="" loading="lazy" decoding="async" width="28" height="28" />
+        <strong>{item.label}</strong>
+        <span class="link-status">
+          {item.inactive && <small>inactive</small>}
+          <span aria-hidden="true">↗</span>
+        </span>
+      </a>
+    ))}
+  </section>
+
+  <section class="experience-stage page-width-wide" aria-label="Reserved space for a future interactive homepage experience">
+    <div class="experience-grid" aria-hidden="true"></div>
+    <div class="experience-orbit orbit-one" aria-hidden="true"></div>
+    <div class="experience-orbit orbit-two" aria-hidden="true"></div>
+    <div class="experience-placeholder">
+      <img class="experience-placeholder-image" src="/images/broccoflush.png" alt="" />
+      <p>widget under construction</p>
+    </div>
+  </section>
+</PageLayout>

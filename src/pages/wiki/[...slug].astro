@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentArticle from '../../components/ContentArticle.astro';
+import WikiLayout from '../../components/WikiLayout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('wiki');
+  return notes.map((note) => ({ params: { slug: note.id }, props: { note } }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+---
+
+<WikiLayout title={`${note.data.title} — broccosite`} description={note.data.description ?? note.data.title} activeId={note.id}>
+  <ContentArticle title={note.data.title} publishedDate={note.data.publishedDate} updatedDate={note.data.updatedDate}>
+    <Content />
+  </ContentArticle>
+</WikiLayout>

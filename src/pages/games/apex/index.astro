@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../../../layouts/SectionLayout.astro';
+
+const allApexNotes = await getCollection('games', ({ data, id }) => !data.draft && data.game === 'apex' && id.startsWith('apex/'));
+const notes = allApexNotes
+  .filter(({ id }) => !id.slice(5).includes('/') && id !== 'apex/fundamentals')
+  .map((note) => ({ kind: 'note' as const, order: note.data.order, note }));
+const visibleFundamentals = new Set([
+  'apex/fundamentals/the-basics',
+  'apex/fundamentals/speed',
+  'apex/fundamentals/damage-delta',
+]);
+const fundamentals = allApexNotes
+  .filter(({ id }) => visibleFundamentals.has(id))
+  .sort((a, b) => a.data.order - b.data.order);
+const entries = [
+  ...notes,
+  { kind: 'folder' as const, order: 2 },
+].sort((a, b) => a.order - b.order);
+---
+
+<SectionLayout title="Apex Legends — broccosite" description="Apex Legends writeups." section="games">
+  <div class="game-landing page-width">
+    <a class="content-back-link" href="/games/">← all games</a>
+    <header class="game-title">
+      <h1>apex legends</h1>
+    </header>
+    <section class="simple-index" aria-label="Apex notes">
+      <ol>
+        {entries.map((entry) => entry.kind === 'note' ? (
+          <li><a href={`/games/${entry.note.id}/`}><span>{entry.note.data.title}</span></a></li>
+        ) : (
+          <li class="simple-index-folder">
+            <details>
+              <summary>
+                <span class="simple-index-folder-title">fundamentals</span>
+                <span class="simple-index-folder-toggle" aria-hidden="true">+</span>
+              </summary>
+              <ul>
+                {fundamentals.map((note) => (
+                  <li>
+                    <a href={`/games/${note.id}/`}>
+                      <svg aria-hidden="true" viewBox="0 0 20 20">
+                        <path d="M5 2.75h6.2L15 6.55v10.7H5z" />
+                        <path d="M11.2 2.75v3.8H15" />
+                      </svg>
+                      <span>{note.data.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </div>
+</SectionLayout>

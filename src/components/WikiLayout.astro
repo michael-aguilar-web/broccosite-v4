@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../layouts/SectionLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  activeId?: string;
+}
+
+const { title, description = title, activeId = '' } = Astro.props;
+const notes = (await getCollection('wiki'))
+  .filter((note) => !note.data.draft)
+  .sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
+
+const rootNotes = notes.filter((note) => !note.id.includes('/'));
+const folderIds = new Set(['useful-links']);
+
+for (const note of notes) {
+  const [folderId] = note.id.split('/');
+  if (note.id.includes('/')) folderIds.add(folderId);
+}
+
+const folders = [...folderIds]
+  .map((id) => ({
+    id,
+    label: id.replaceAll('-', ' '),
+    notes: notes.filter((note) => note.id.startsWith(`${id}/`)),
+    active: activeId.startsWith(`${id}/`),
+  }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+---
+
+<SectionLayout title={title} description={description} section="wiki" pageClass="wiki-page">
+  <div class="wiki-shell page-width-wide">
+    <aside class="wiki-sidebar" aria-label="Wiki navigation">
+      <details class="wiki-navigation" open>
+        <summary>browse wiki</summary>
+        <nav class="wiki-tree" aria-label="Wiki pages">
+          <a class:list={['wiki-tree-link', 'wiki-tree-home', { active: !activeId }]} href="/wiki/" aria-current={!activeId ? 'page' : undefined}>
+            <svg class="wiki-home-icon" aria-hidden="true" viewBox="0 0 20 20">
+              <path d="m3 9 7-6 7 6" />
+              <path d="M5 8.25v8.25h10V8.25M8.25 16.5v-5h3.5v5" />
+            </svg>
+            <span>wiki</span>
+          </a>
+
+          {rootNotes.map((note) => (
+            <a
+              class:list={['wiki-tree-link', { active: activeId === note.id }]}
+              href={`/wiki/${note.id}/`}
+              aria-current={activeId === note.id ? 'page' : undefined}
+            >
+              <svg class="wiki-page-icon" aria-hidden="true" viewBox="0 0 20 20">
+                <path d="M5 2.75h6.2L15 6.55v10.7H5z" />
+                <path class="wiki-page-icon-fold" d="M11.2 2.75v3.8H15" />
+                <path class="wiki-page-icon-lines" d="M7.4 10h5.2M7.4 13h4" />
+              </svg>
+              <span>{note.data.title}</span>
+            </a>
+          ))}
+
+          {folders.map((folder) => (
+            <details class="wiki-tree-folder" open={folder.active}>
+              <summary>
+                <svg class="wiki-folder-icon wiki-folder-icon--closed" aria-hidden="true" viewBox="0 0 20 20">
+                  <path d="M2.75 5.25h5l1.5 1.75h8v9.25H2.75z" />
+                </svg>
+                <svg class="wiki-folder-icon wiki-folder-icon--open" aria-hidden="true" viewBox="0 0 20 20">
+                  <path d="M2.75 6.25v-2.5h5l1.5 1.75h7v2" />
+                  <path d="M3.5 7.5h14l-1.75 8.75h-14z" />
+                </svg>
+                <span>{folder.label}</span>
+              </summary>
+              {folder.notes.length > 0 && (
+                <div class="wiki-tree-children">
+                  {folder.notes.map((note) => (
+                    <a
+                      class:list={['wiki-tree-link', { active: activeId === note.id }]}
+                      href={`/wiki/${note.id}/`}
+                      aria-current={activeId === note.id ? 'page' : undefined}
+                    >
+                      <svg class="wiki-page-icon" aria-hidden="true" viewBox="0 0 20 20">
+                        <path d="M5 2.75h6.2L15 6.55v10.7H5z" />
+                        <path class="wiki-page-icon-fold" d="M11.2 2.75v3.8H15" />
+                        <path class="wiki-page-icon-lines" d="M7.4 10h5.2M7.4 13h4" />
+                      </svg>
+                      <span>{note.data.title}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </details>
+          ))}
+        </nav>
+      </details>
+    </aside>
+    <div class="wiki-main">
+      <slot />
+    </div>
+  </div>
+</SectionLayout>
+
+<script>
+  const navigation = document.querySelector<HTMLDetailsElement>('.wiki-navigation');
+  const mobileNavigation = window.matchMedia('(max-width: 44rem)');
+
+  if (navigation) {
+    const syncNavigation = (mobile: boolean) => {
+      navigation.open = !mobile;
+    };
+
+    syncNavigation(mobileNavigation.matches);
+    mobileNavigation.addEventListener('change', (event) => syncNavigation(event.matches));
+  }
+</script>

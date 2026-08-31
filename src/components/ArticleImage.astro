@@ -1,0 +1,54 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  width?: number | string;
+  height?: number | string;
+  inline?: boolean;
+}
+
+const {
+  src,
+  alt = '',
+  width,
+  height,
+  inline = false,
+} = Astro.props;
+
+const toCssLength = (value: number | string) => typeof value === 'number' ? `${value}px` : value;
+const inlineStyle = inline
+  ? [
+      width !== undefined ? `width: ${toCssLength(width)}` : '',
+      height !== undefined ? `height: ${toCssLength(height)}` : '',
+    ].filter(Boolean).join('; ')
+  : undefined;
+---
+
+<img
+  class:list={['article-image', { 'article-image--inline': inline }]}
+  {src}
+  {alt}
+  {width}
+  {height}
+  style={inlineStyle}
+  loading="lazy"
+  decoding="async"
+/>
+
+<style>
+  .article-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2.5rem auto;
+    object-fit: contain;
+  }
+
+  .article-image--inline {
+    display: inline-block;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    vertical-align: middle;
+  }
+</style>

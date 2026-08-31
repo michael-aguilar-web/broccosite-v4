@@ -1,0 +1,89 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/global.css';
+import '../styles/minimal.css';
+import '../styles/rebalance.css';
+import '../styles/content.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  section?: string;
+  pageClass?: string;
+}
+
+const {
+  title = 'broccosite',
+  description = 'Michael’s personal site.',
+  section = '',
+  pageClass = '',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/broccocolon3.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&family=Quicksand:wght@400..700&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body class={pageClass}>
+    <SiteHeader activeSection={section} />
+    <main id="main-content"><slot /></main>
+    <SiteFooter />
+    <script>
+      for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+        const destination = new URL(link.href, window.location.href);
+        if (!['http:', 'https:'].includes(destination.protocol) || destination.origin === window.location.origin) continue;
+
+        link.target = '_blank';
+        link.relList.add('noopener', 'noreferrer');
+      }
+
+      const mermaidCodeBlocks = document.querySelectorAll<HTMLElement>('pre[data-language="mermaid"] > code');
+      if (mermaidCodeBlocks.length) {
+        const { default: mermaid } = await import('mermaid');
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'strict',
+          theme: 'base',
+          fontFamily: 'Quicksand, sans-serif',
+          themeVariables: {
+            fontFamily: 'Quicksand, sans-serif',
+            primaryColor: '#ccefd8',
+            primaryBorderColor: '#2d9b5f',
+            primaryTextColor: '#0f1411',
+            secondaryTextColor: '#0f1411',
+            tertiaryTextColor: '#0f1411',
+            lineColor: '#9a9f99',
+            edgeLabelBackground: '#faf9f4',
+            secondaryColor: '#faf9f4',
+            tertiaryColor: '#e3f6e9',
+          },
+        });
+
+        let diagramIndex = 0;
+        for (const code of mermaidCodeBlocks) {
+          const source = code.textContent ?? '';
+          const codeBlock = code.parentElement;
+          if (!codeBlock) continue;
+
+          const diagram = document.createElement('div');
+          diagram.className = 'mermaid';
+          const renderId = `mermaid-diagram-${diagramIndex++}`;
+          const { svg, bindFunctions } = await mermaid.render(renderId, source);
+          diagram.innerHTML = svg;
+          codeBlock.replaceWith(diagram);
+          bindFunctions?.(diagram);
+        }
+      }
+    </script>
+  </body>
+</html>

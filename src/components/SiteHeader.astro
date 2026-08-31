@@ -1,0 +1,44 @@
+---
+interface Props {
+  activeSection?: string;
+}
+
+const { activeSection = '' } = Astro.props;
+const navigation = [
+  { label: 'home', href: '/', id: 'home' },
+  { label: 'brain dump', href: '/braindump/', id: 'braindump' },
+  { label: 'game writeups', href: '/games/', id: 'games' },
+  { label: 'projects', href: '/projects/', id: 'projects' },
+  { label: 'wiki', href: '/wiki/', id: 'wiki' },
+  { label: 'about', href: '/about/', id: 'about' },
+];
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="broccosite home">
+    <img class="brand-mark" src="/broccocolon3.png" alt="" width="28" height="28" decoding="async" />
+    <span>broccosite</span>
+  </a>
+  <nav class="desktop-header-nav" aria-label="Primary navigation">
+    {navigation.filter((item) => item.id !== 'home').map((item) => (
+      <a href={item.href} class:list={{ active: activeSection === item.id }} aria-current={activeSection === item.id ? 'page' : undefined}>{item.label}</a>
+    ))}
+  </nav>
+  <details class="site-menu site-menu--mobile">
+      <summary>
+        <span>menu</span>
+        <span class="menu-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="menu-drawer">
+        <div class="menu-drawer-inner">
+          <nav aria-label="Primary navigation">
+            {navigation.map((item) => (
+              <a href={item.href} class:list={{ active: activeSection === item.id }} aria-current={activeSection === item.id ? 'page' : undefined}>
+                <span class="menu-label">{item.label}</span>
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </details>
+</header>

@@ -1,0 +1,62 @@
+.section-hero h1 {
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
+}
+
+.temporary-links {
+  display: grid;
+  padding: clamp(3.25rem, 7vw, 5.5rem) 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.temporary-link {
+  display: grid;
+  min-height: 5rem;
+  padding: 1rem 1.2rem;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: none;
+  text-decoration: none;
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.temporary-link:hover {
+  color: var(--leaf-dark);
+  background: var(--sprout-soft);
+  border-color: var(--leaf);
+  box-shadow: none;
+}
+
+.temporary-link.inactive {
+  color: var(--ink-soft);
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.temporary-link img {
+  width: 1.75rem;
+  height: 1.75rem;
+  object-fit: contain;
+  border-radius: 0.35rem;
+}
+
+.temporary-link strong {
+  font-family: 'Quicksand', ui-rounded, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.temporary-link > span {
+  color: var(--leaf-dark);
+}
+
+@media (max-width: 44rem) {
+  .temporary-links {
+    grid-template-columns: 1fr;
+  }
+
+}
