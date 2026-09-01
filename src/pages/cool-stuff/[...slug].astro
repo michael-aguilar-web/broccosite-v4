@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentArticle from '../../components/ContentArticle.astro';
+import SectionLayout from '../../layouts/SectionLayout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('coolStuff', ({ data }) => !data.draft);
+  return items.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<SectionLayout title={`${item.data.title} — broccosite`} description={item.data.description ?? item.data.title} section="cool-stuff">
+  <ContentArticle title={item.data.title} backHref="/cool-stuff/" backLabel="cool stuff" publishedDate={item.data.publishedDate} updatedDate={item.data.updatedDate}>
+    <Content />
+  </ContentArticle>
+</SectionLayout>

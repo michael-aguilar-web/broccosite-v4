@@ -24,8 +24,8 @@ const games = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/data/projects' }),
+const coolStuff = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/data/cool-stuff' }),
   schema: common.extend({
     cover: z.string(),
     coverAlt: z.string(),
@@ -55,4 +55,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { braindump, games, projects, wiki, pages };
+export const collections = { braindump, games, coolStuff, wiki, pages };

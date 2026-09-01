@@ -2,18 +2,18 @@
 title: "twitch channel randomizer"
 publishedDate: "2025-08-18"
 tags: []
-cover: "/images/projects/navbar.webp"
+cover: "/images/cool-stuff/navbar.webp"
 coverAlt: "The Twitch navigation bar with the randomizer button"
 featured: true
 ---
 
 import ArticleImage from '../../components/ArticleImage.astro';
 
-<ArticleImage src="/images/projects/navbar.webp" alt="Twitch Randomizer navigation bar" width={500} />
+<ArticleImage src="/images/cool-stuff/navbar.webp" alt="Twitch Randomizer navigation bar" width={500} />
 
 my project last week/end was to add more gambling to twitch in the form of a randomizer button! This is a [tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) script that adds a button on the nav bar up top to send you to a random page, based on the filters you set. Discoverability for smaller streamers is pretty bad on twitch, so I took it upon myself to create a new way to check out smaller creators. The button does a really good job of channeling your sense of "surely the next streamer can't also be terrible!"
 
-<ArticleImage src="/images/projects/filtermenu.webp" alt="Twitch Randomizer filter menu" width={612} />
+<ArticleImage src="/images/cool-stuff/filtermenu.webp" alt="Twitch Randomizer filter menu" width={612} />
 
 here are what the filters do (and the ones I have set as of right now):
 - **Language = en**
@@ -46,12 +46,12 @@ there's also an import and export feature for saving & sharing your filters.
 - **Step 4:** head to the "applications" page on the left, and click the purple "register your application" button on the right
 - **Step 5:** fill out everything above "client ID" as shown
 
-<ArticleImage src="/images/projects/twitchsetup.webp" alt="Twitch setup screen" width={500} />
+<ArticleImage src="/images/cool-stuff/twitchsetup.webp" alt="Twitch setup screen" width={500} />
 
 - **Step 6:** copypaste your client ID and client secret somewhere temporarily (you may have to click "new secret" to generate a new client secret)
 - **Step 7:** head to your tampermonkey dashboard, open up the script with the edit button and paste those values into the variables at lines 97 and 98
 
-<ArticleImage src="/images/projects/install.webp" alt="Twitch Randomizer installation screen" width={500} />
+<ArticleImage src="/images/cool-stuff/install.webp" alt="Twitch Randomizer installation screen" width={500} />
 
 - **Step 7.1:**
   - line 97 should look like: const CLIENT_ID = 'asdf1234yourclientidhere'

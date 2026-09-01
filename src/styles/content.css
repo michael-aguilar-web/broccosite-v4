@@ -10,7 +10,7 @@
 
 .content-back-link {
   display: inline-block;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
   color: var(--link);
   font-weight: 600;
   text-decoration: none;

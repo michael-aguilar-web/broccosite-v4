@@ -146,11 +146,11 @@
   font-size: clamp(1.7rem, 4vw, 2.6rem);
 }
 
-.project-card-copy.minimal {
+.cool-stuff-card-copy.minimal {
   padding-right: 3rem;
 }
 
-.project-card-copy.minimal h2 {
+.cool-stuff-card-copy.minimal h2 {
   margin-bottom: 0;
 }
 
@@ -158,18 +158,18 @@
   max-width: none;
 }
 
-.project-page.minimal header h1 {
+.cool-stuff-page.minimal header h1 {
   margin-bottom: 0;
 }
 
-.project-date-line,
+.cool-stuff-date-line,
 .about-date {
   color: var(--muted);
   font-size: 0.9rem;
   font-style: italic;
 }
 
-.project-page.minimal .prose {
+.cool-stuff-page.minimal .prose {
   margin-top: clamp(3rem, 7vw, 5rem);
 }
 
