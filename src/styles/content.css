@@ -144,8 +144,8 @@
 .migrated-content > :last-child { margin-bottom: 0; }
 .migrated-content .text-center { text-align: center; }
 .migrated-content h2 { margin: 3rem 0 0.75rem; font-size: clamp(1.65rem, 4vw, 2.25rem); line-height: 1.15; }
-.migrated-content h3 { margin: 2.25rem 0 0.65rem; font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.2; }
-.migrated-content h4 { margin: 1.5rem 0 0.45rem; font-size: 1.08rem; line-height: 1.35; }
+.migrated-content h3 { margin: 2.25rem 0 0.65rem; font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.2; font-weight: 650; }
+.migrated-content h4 { margin: 1.5rem 0 0.45rem; font-size: 1.08rem; line-height: 1.35; font-weight: 650; }
 .migrated-content h5,
 .migrated-content h6 { margin: 1.5rem 0 0.5rem; font-size: 0.95rem; line-height: 1.4; }
 .migrated-content :where(h2, h3, h4, h5, h6) + :where(h3, h4, h5, h6) { margin-top: 1rem; }
