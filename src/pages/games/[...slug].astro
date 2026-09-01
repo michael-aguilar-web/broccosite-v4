@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
 const { note } = Astro.props;
 const { Content } = await render(note);
-const gameName = note.data.game === 'tft' ? 'TFT' : 'Apex';
+const gameName = note.data.game === 'tft' ? 'tft' : 'apex';
 ---
 
 <SectionLayout title={`${note.data.title} — broccosite`} description={note.data.description ?? note.data.title} section="games">
