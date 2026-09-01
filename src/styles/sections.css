@@ -9,7 +9,7 @@
 .filter-chip.active { color: var(--leaf-dark); background: var(--sprout); border-color: #a7e3c2; }
 
 .category-title { margin-top: clamp(2.75rem, 6vw, 4.5rem); }
-.category-title h1 { font-size: clamp(3rem, 7vw, 4.35rem); }
+.category-title h1 { font-size: clamp(3.15rem, 7.5vw, 4.65rem); }
 .category-grid { margin-top: clamp(2.25rem, 4.5vw, 3.25rem); }
 .category-width { width: min(58rem, calc(100% - 2rem)); margin-inline: auto; }
 .timeline-section { padding-bottom: clamp(4rem, 8vw, 6.5rem); }
