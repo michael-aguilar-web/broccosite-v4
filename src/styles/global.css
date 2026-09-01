@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.03em;
 }
 
-p { text-wrap: pretty; }
+p { text-wrap: wrap; }
 .page-width { width: var(--page); margin-inline: auto; }
 .page-width-wide { width: var(--page-wide); margin-inline: auto; }
 
