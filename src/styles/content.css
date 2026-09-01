@@ -280,7 +280,7 @@
 .simple-index a { color: inherit; text-decoration: none; }
 .timeline-entry h3 a:hover,
 .simple-index a:hover { color: var(--leaf-dark); }
-.simple-index li a { display: block; width: 100%; }
+.simple-index > ol > li > a { display: block; width: 100%; }
 
 @media (min-width: 701px) {
   .content-article.page-width { width: min(58rem, calc(100% - 2rem)); }
