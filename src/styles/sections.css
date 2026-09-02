@@ -118,10 +118,10 @@
 .wiki-tree-folder[open] .wiki-folder-icon--closed { display: none; }
 .wiki-tree-folder[open] .wiki-folder-icon--open { display: block; }
 .wiki-main { min-width: 0; }
-.wiki-document { width: min(51rem, calc(100% - 3rem)); margin: 0 auto; padding: clamp(2.5rem, 5vw, 4rem) 0; }
+.wiki-document { width: min(51rem, calc(100% - 3rem)); margin: 0 auto; padding: 2rem 0 clamp(2.5rem, 5vw, 4rem); }
 .wiki-document h1 { margin-bottom: 1.5rem; font-size: clamp(2.8rem, 6vw, 4rem); }
 .wiki-document h2 { margin: 3.25rem 0 0.9rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line); font-size: 1.8rem; }
-.wiki-main .content-article { width: min(51rem, calc(100% - 3rem)); margin-inline: auto; padding-top: clamp(2.5rem, 5vw, 4rem); }
+.wiki-main .content-article { width: min(51rem, calc(100% - 3rem)); margin-inline: auto; padding-top: 2rem; }
 .wiki-main .content-header,
 .wiki-main .content-header h1 { text-align: left; }
 .wiki-main .content-header h1 { max-width: none; margin-inline: 0; }
@@ -164,6 +164,7 @@
   .wiki-navigation:not([open]) > .wiki-tree { display: none; }
   .wiki-tree { margin-top: 0.65rem; }
   .wiki-document,
-  .wiki-main .content-article { width: min(100% - 2rem, 51rem); padding-top: 3rem; }
+  .wiki-main .content-article { width: min(100% - 2rem, 51rem); padding-top: 2rem; }
+  .wiki-document h1 { margin-bottom: 1rem; }
   .rank-list li { grid-template-columns: 1fr; gap: 0.15rem; }
 }
