@@ -7,6 +7,7 @@ tags: ["media reviews"]
 import ArticleImage from '../../components/ArticleImage.astro';
 import morgana from '../../assets/morgana.png';
 import personaLogo from '../../assets/p5logo.png';
+import Callout from '../../components/Callout.astro';
 
 (this post is spoiler free)
 
@@ -75,7 +76,9 @@ rating a soundtrack is something that is pretty subjective tbh, but imo a lot of
 
 that being said, "The Whims of Fate" is a banger:
 
-(warning: spotify embeds play at max volume)
+<Callout type="warning" title="warning:">
+spotify embeds play at max volume
+</Callout>
 
 <center><iframe style={{ borderRadius: '12px' }} src="https://open.spotify.com/embed/track/73DCreJgfFdFxVnjsMSeo4?utm_source=generator&theme=0" width="50%" height={152} frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></center>
 
