@@ -100,7 +100,7 @@
 
 .image-lightbox-media img {
   display: none;
-  max-width: calc(92vw - 1.5rem);
+  max-width: 100%;
   max-height: calc(88vh - 4.5rem);
   object-fit: contain;
 }
@@ -291,6 +291,6 @@
   .migrated-content table { display: block; overflow-x: auto; }
   .image-lightbox-panel { max-width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); padding: 0.5rem; }
   .image-lightbox-media { min-width: calc(100vw - 2rem); min-height: min(55vh, 22rem); }
-  .image-lightbox-media img { max-width: calc(100vw - 2rem); max-height: calc(100dvh - 4.5rem); }
+  .image-lightbox-media img { max-width: 100%; max-height: calc(100dvh - 4.5rem); }
   .image-lightbox-close { top: 0.8rem; right: 0.8rem; }
 }

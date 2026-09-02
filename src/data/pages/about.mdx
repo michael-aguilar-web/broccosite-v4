@@ -4,14 +4,23 @@ updatedDate: "2026-08-31"
 ---
 
 import ArticleImage from '../../components/ArticleImage.astro';
+import ImageLightboxLink from '../../components/ImageLightboxLink.astro';
+import georgiaTechLogo from '../../assets/Georgia_Tech_Yellow_Jackets_logo.png';
+import apexRank from '../../assets/apexrank.png';
+import profileImage from '../../assets/s3white_cropped_circle.png';
+import season26 from '../../assets/s26.webp';
+import season27 from '../../assets/s27.webp';
+import tftRank from '../../assets/tftrank.png';
+import tftRank13 from '../../assets/tftrank13.png';
+import unrealRank from '../../assets/unreal_c7s1.webp';
 
-<ArticleImage src="/images/s3white_cropped_circle.png" alt="Broccoli" width={150} height={150} />
+<ArticleImage src={profileImage} alt="Broccoli" width={150} height={150} loading="eager" />
 
 <div class="text-center">
 
-hello I'm Michael, aka Broccoli - I'm a mechanical engineer (<ArticleImage src="/images/Georgia_Tech_Yellow_Jackets_logo.png" alt="Georgia Tech Yellow Jackets" height={16} inline /> 22') who enjoys doing things that get the brain juices flowing 🙂
+hello I'm Michael, aka Broccoli - I'm a mechanical engineer (<ArticleImage src={georgiaTechLogo} alt="Georgia Tech Yellow Jackets" height={16} inline loading="eager" /> 22') who enjoys doing things that get the brain juices flowing 🙂
 
-contact me at: <ArticleImage src="/images/icons/discord.png" alt="Discord" width={20} height={20} inline /> *broccoccoccoli*
+contact me at: <ArticleImage src="/images/icons/discord.png" alt="Discord" width={20} height={20} inline loading="eager" /> *broccoccoccoli*
 
 </div>
 
@@ -38,10 +47,10 @@ contact me at: <ArticleImage src="/images/icons/discord.png" alt="Discord" width
 
 ## peak ranks
 *if you read this far then you might be slightly interested in this info*
-- [apex legends master](/images/apexrank.png) season 10[^2] / 11 / 12[^2] / 13[^2] / [26](/images/s26.webp) / [27 (swapped to controller)](/images/s27.webp) 
-- teamfight tactics [grandmaster set 13](/images/tftrank13.png) (rank **\#474** NA, 357 LP peak) | [grandmaster set 7.5](/images/tftrank.png) (476 LP peak) | master set 9 / 6.5 / 6 
+- <ImageLightboxLink src={apexRank} label="apex legends master" /> season 10[^2] / 11 / 12[^2] / 13[^2] / <ImageLightboxLink src={season26} label="26" /> / <ImageLightboxLink src={season27} label="27 (swapped to controller)" />
+- teamfight tactics <ImageLightboxLink src={tftRank13} label="grandmaster set 13" /> (rank **\#474** NA, 357 LP peak) | <ImageLightboxLink src={tftRank} label="grandmaster set 7.5" /> (476 LP peak) | master set 9 / 6.5 / 6
     - TOURNAMENT EARNINGS: $10 😎
-- [fortnite zb unreal rank c7s1](/images/unreal_c7s1.webp) (this felt too easy to be impressive but might as well put it on the record)
+- <ImageLightboxLink src={unrealRank} label="fortnite zb unreal rank c7s1" /> (this felt too easy to be impressive but might as well put it on the record)
 - overwatch d4 dps (season 1, 2026)
 - valorant d2 (v26: act 2)
 - [osu rank \#7623](https://osu.ppy.sh/users/5870537) 

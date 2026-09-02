@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import brandMark from '../assets/broccocolon3.png';
+
 interface Props {
   activeSection?: string;
 }
@@ -16,7 +19,17 @@ const navigation = [
 
 <header class="site-header">
   <a class="brand" href="/" aria-label="broccosite home">
-    <img class="brand-mark" src="/broccocolon3.png" alt="" width="28" height="28" decoding="async" />
+    <Image
+      class="brand-mark"
+      src={brandMark}
+      alt=""
+      width={28}
+      height={28}
+      layout="fixed"
+      densities={[1, 2]}
+      loading="eager"
+      decoding="async"
+    />
     <span>broccosite</span>
   </a>
   <nav class="desktop-header-nav" aria-label="Primary navigation">

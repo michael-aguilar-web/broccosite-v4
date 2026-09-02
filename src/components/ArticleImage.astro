@@ -1,10 +1,13 @@
 ---
+import { Image, type ImageMetadata } from 'astro:assets';
+
 interface Props {
-  src: string;
+  src: ImageMetadata | string;
   alt?: string;
   width?: number | string;
   height?: number | string;
   inline?: boolean;
+  loading?: 'eager' | 'lazy';
 }
 
 const {
@@ -13,6 +16,7 @@ const {
   width,
   height,
   inline = false,
+  loading = 'lazy',
 } = Astro.props;
 
 const toCssLength = (value: number | string) => typeof value === 'number' ? `${value}px` : value;
@@ -24,19 +28,33 @@ const inlineStyle = inline
   : undefined;
 ---
 
-<img
-  class:list={['article-image', { 'article-image--inline': inline }]}
-  {src}
-  {alt}
-  {width}
-  {height}
-  style={inlineStyle}
-  loading="lazy"
-  decoding="async"
-/>
+{typeof src === 'string' ? (
+  <img
+    class:list={['article-image', { 'article-image--inline': inline }]}
+    {src}
+    {alt}
+    {width}
+    {height}
+    style={inlineStyle}
+    loading={loading}
+    decoding="async"
+  />
+) : (
+  <Image
+    class:list={['article-image', { 'article-image--inline': inline }]}
+    src={src}
+    alt={alt}
+    width={typeof width === 'number' ? width : undefined}
+    height={typeof height === 'number' ? height : undefined}
+    layout={inline ? 'fixed' : 'constrained'}
+    style={inlineStyle}
+    loading={loading}
+    decoding="async"
+  />
+)}
 
 <style>
-  .article-image {
+  :global(.article-image) {
     display: block;
     max-width: 100%;
     height: auto;
@@ -44,7 +62,7 @@ const inlineStyle = inline
     object-fit: contain;
   }
 
-  .article-image--inline {
+  :global(.article-image.article-image--inline) {
     display: inline-block;
     max-width: none;
     margin: 0;

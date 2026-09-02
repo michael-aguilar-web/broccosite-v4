@@ -1,0 +1,18 @@
+---
+import { getImage, type ImageMetadata } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  label: string;
+}
+
+const { src, label } = Astro.props;
+const optimizedImage = await getImage({
+  src,
+  width: Math.min(src.width, 1920),
+  format: 'webp',
+  quality: 90,
+});
+---
+
+<a href={optimizedImage.src}>{label}</a>

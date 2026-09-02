@@ -1,11 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import SectionLayout from '../../layouts/SectionLayout.astro';
+import apexImage from '../../assets/games/apex.webp';
+import tftImage from '../../assets/games/tft.webp';
 
 const notes = await getCollection('games', ({ data }) => !data.draft);
 const games = [
-  { name: 'teamfight tactics', href: '/games/tft/', image: '/images/games/tft.webp', imageWidth: 1200, imageHeight: 600, imageFit: 'cover', count: notes.filter((note) => note.data.game === 'tft').length },
-  { name: 'apex legends', href: '/games/apex/', image: '/images/games/apex.webp', imageWidth: 600, imageHeight: 600, imageFit: 'contain', count: notes.filter((note) => note.data.game === 'apex').length },
+  { name: 'teamfight tactics', href: '/games/tft/', image: tftImage, imageFit: 'cover', count: notes.filter((note) => note.data.game === 'tft').length },
+  { name: 'apex legends', href: '/games/apex/', image: apexImage, imageFit: 'contain', count: notes.filter((note) => note.data.game === 'apex').length },
 ];
 ---
 
@@ -15,7 +18,7 @@ const games = [
     {games.map((game) => (
       <a class="game-card minimal" href={game.href}>
         <span class:list={['game-art', `game-art--${game.imageFit}`]}>
-          <img src={game.image} alt="" width={game.imageWidth} height={game.imageHeight} decoding="async" />
+          <Image src={game.image} alt="" layout="full-width" decoding="async" />
         </span>
         <span class="game-card-copy"><strong>{game.name}</strong></span>
         <span class="game-count">{game.count} notes <span aria-hidden="true">→</span></span>

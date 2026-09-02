@@ -1,5 +1,7 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import broccoFlush from '../assets/broccoflush.png';
 import '../styles/home-links.css';
 
 const links = [
@@ -23,9 +25,9 @@ const links = [
   </section>
 
   <section class="temporary-links page-width" aria-label="Links">
-    {links.map((item) => (
+    {links.map((item, index) => (
       <a class:list={['temporary-link', { inactive: item.inactive }]} href={item.href} target="_blank" rel="noreferrer">
-        <img src={item.icon} alt="" loading="lazy" decoding="async" width="28" height="28" />
+        <img src={item.icon} alt="" loading={index < 4 ? 'eager' : 'lazy'} decoding="async" width="28" height="28" />
         <strong>{item.label}</strong>
         <span class="link-status">
           {item.inactive && <small>inactive</small>}
@@ -40,7 +42,7 @@ const links = [
     <div class="experience-orbit orbit-one" aria-hidden="true"></div>
     <div class="experience-orbit orbit-two" aria-hidden="true"></div>
     <div class="experience-placeholder">
-      <img class="experience-placeholder-image" src="/images/broccoflush.png" alt="" />
+      <Image class="experience-placeholder-image" src={broccoFlush} alt="" layout="constrained" />
       <p>widget under construction</p>
     </div>
   </section>
