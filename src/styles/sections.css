@@ -154,9 +154,9 @@
   .cool-stuff-card.featured { grid-column: auto; }
   .cool-stuff-card.featured .cool-stuff-image-wrap { aspect-ratio: 4 / 3; }
   .game-card { min-height: 23rem; }
-  .wiki-shell { width: 100%; grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
-  .wiki-sidebar { padding: 0.75rem 1rem; border-right: 0; border-bottom: 1px solid var(--line); }
-  .wiki-navigation { position: static; max-height: none; padding: 0; overflow: visible; }
+  .wiki-shell { width: calc(100% - 2rem); grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .wiki-sidebar { padding: 0.75rem 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .wiki-navigation { width: 100%; margin: 0; position: static; max-height: none; padding: 0; overflow: visible; }
   .wiki-navigation > summary { display: flex; min-height: 2.6rem; padding: 0.5rem 0.7rem; align-items: center; justify-content: space-between; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-button); cursor: pointer; font: 650 0.9rem 'Quicksand', ui-rounded, sans-serif; list-style: none; }
   .wiki-navigation > summary::-webkit-details-marker { display: none; }
   .wiki-navigation > summary::after { color: var(--muted); content: '+'; font-size: 1.1rem; }
@@ -164,7 +164,7 @@
   .wiki-navigation:not([open]) > .wiki-tree { display: none; }
   .wiki-tree { margin-top: 0.65rem; }
   .wiki-document,
-  .wiki-main .content-article { width: min(100% - 2rem, 51rem); padding-top: 2rem; }
+  .wiki-main .content-article { width: 100%; padding-top: 2rem; padding-inline: 0; }
   .wiki-document h1 { margin-bottom: 1rem; }
   .rank-list li { grid-template-columns: 1fr; gap: 0.15rem; }
 }
