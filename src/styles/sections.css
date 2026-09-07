@@ -168,3 +168,16 @@
   .wiki-document h1 { margin-bottom: 1rem; }
   .rank-list li { grid-template-columns: 1fr; gap: 0.15rem; }
 }
+
+/* Wiki title banner, themed through each site's existing palette. */
+.wiki-main .content-header h1,
+.wiki-document > h1 {
+  width: 100%;
+  max-width: none;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  color: #000;
+  background: var(--sprout);
+  border: 1px solid color-mix(in srgb, var(--leaf) 22%, transparent);
+  border-radius: var(--radius-card);
+  overflow-wrap: anywhere;
+}
