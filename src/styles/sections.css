@@ -6,7 +6,8 @@
 
 .filter-row { display: flex; margin: clamp(2.25rem, 4.5vw, 3.25rem) auto clamp(1.75rem, 3vw, 2.5rem); gap: 0.65rem; align-items: center; justify-content: flex-start; flex-wrap: wrap; }
 .filter-chip { min-height: 2.5rem; padding: 0.55rem 1rem; color: var(--ink-soft); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-button); font: 600 0.82rem 'Quicksand', ui-rounded, sans-serif; white-space: nowrap; }
-.filter-chip.active { color: var(--leaf-dark); background: var(--sprout); border-color: #a7e3c2; }
+/* A choice you set: solid, like Brocco's segmented controls. */
+.filter-chip.active { color: var(--brocco-switch-thumb); background: var(--brocco-switch-on); border-color: var(--brocco-switch-on); }
 
 .category-title { margin-top: clamp(2.75rem, 6vw, 4.5rem); }
 .category-title h1 { font-size: clamp(3.15rem, 7.5vw, 4.65rem); }
@@ -102,7 +103,8 @@
 .wiki-tree-folder > summary { display: flex; min-height: 2.35rem; padding: 0.4rem 0.55rem; gap: 0.55rem; align-items: center; color: var(--muted); border: 1px solid transparent; border-radius: 0.55rem; cursor: pointer; font: 550 0.94rem/1.3 'Quicksand', ui-rounded, sans-serif; list-style: none; text-decoration: none; }
 .wiki-tree-link:hover,
 .wiki-tree-folder > summary:hover { color: var(--ink); background: color-mix(in srgb, var(--sprout-soft) 55%, transparent); text-decoration: none; }
-.wiki-tree-link.active { color: var(--leaf-dark); background: var(--sprout-soft); border-color: color-mix(in srgb, var(--leaf) 22%, transparent); font-weight: 650; text-decoration: none; }
+/* Where you are: the soft tint. */
+.wiki-tree-link.active { color: var(--brocco-current-ink); background: var(--brocco-current); border-color: transparent; font-weight: 700; text-decoration: none; }
 .wiki-tree-home { margin-bottom: 0.85rem; font-weight: 700; }
 .wiki-tree-home::after { position: absolute; right: 0; bottom: -0.55rem; left: 0; height: 1px; background: var(--line); content: ''; }
 .wiki-tree-home { position: relative; }

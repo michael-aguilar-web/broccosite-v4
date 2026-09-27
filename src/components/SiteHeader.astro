@@ -33,8 +33,11 @@ const navigation = [
     <span>broccosite</span>
   </a>
   <nav class="desktop-header-nav" aria-label="Primary navigation">
-    {navigation.filter((item) => item.id !== 'home').map((item) => (
-      <a href={item.href} class:list={{ active: activeSection === item.id }} aria-current={activeSection === item.id ? 'page' : undefined}>{item.label}</a>
+    {navigation.filter((item) => item.id !== 'home').map((item, index) => (
+      <>
+        {index > 0 && <span class="nav-separator" aria-hidden="true">/</span>}
+        <a href={item.href} class:list={{ active: activeSection === item.id }} aria-current={activeSection === item.id ? 'page' : undefined}>{item.label}</a>
+      </>
     ))}
   </nav>
   <details class="site-menu site-menu--mobile">

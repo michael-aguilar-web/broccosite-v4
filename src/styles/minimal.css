@@ -16,10 +16,19 @@
   border-radius: 0.75rem;
 }
 
-.menu-drawer a:hover,
-.menu-drawer a.active {
+.menu-drawer a:hover {
   background: var(--sprout-soft);
   border-color: #ccebd9;
+}
+
+/* Where you are: the soft tint. */
+.menu-drawer a.active {
+  background: var(--brocco-current);
+  border-color: transparent;
+}
+
+.menu-drawer a.active .menu-label {
+  color: var(--brocco-current-ink);
 }
 
 .home-intro {
