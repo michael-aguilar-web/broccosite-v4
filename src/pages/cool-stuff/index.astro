@@ -27,7 +27,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat('en', { year: 'numeri
         <div class="cool-stuff-image-wrap">
           <Image src={cover} alt={item.data.coverAlt} layout="full-width" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
         </div>
-        <div class="cool-stuff-card-copy minimal">
+        <div class="cool-stuff-card-copy">
           {(item.data.publishedDate ?? item.data.updatedDate) && (
             <span class="cool-stuff-date">{formatDate((item.data.publishedDate ?? item.data.updatedDate)!)}</span>
           )}
@@ -36,7 +36,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat('en', { year: 'numeri
         </div>
       </a>
     ))}
-    <a class="professional-card minimal" href="https://michaelbaguilar.com" rel="noreferrer">
+    <a class="professional-card" href="https://michaelbaguilar.com" rel="noreferrer">
       <strong>professional work</strong>
       <span>michaelbaguilar.com <span aria-hidden="true">↗</span></span>
     </a>

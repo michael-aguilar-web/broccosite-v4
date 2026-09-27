@@ -58,16 +58,6 @@ p { text-wrap: wrap; }
 .page-width { width: var(--page); margin-inline: auto; }
 .page-width-wide { width: var(--page-wide); margin-inline: auto; }
 
-.eyebrow {
-  margin: 0 0 0.8rem;
-  color: var(--leaf-dark);
-  font-family: 'Quicksand', ui-rounded, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .site-header {
   position: relative;
   z-index: 20;
@@ -160,127 +150,61 @@ p { text-wrap: wrap; }
   box-shadow: var(--shadow-lifted);
 }
 
-.menu-kicker {
-  margin: 0 0 0.75rem;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .menu-drawer nav {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
 }
 
 .menu-drawer a {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr) auto;
-  padding: 0.95rem 0.25rem;
-  gap: 0.5rem;
-  align-items: baseline;
-  border-bottom: 1px solid var(--line-soft);
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
   text-decoration: none;
 }
 
-.menu-drawer a:hover .menu-label, .menu-drawer a.active .menu-label { color: var(--leaf-dark); }
-.menu-number { color: var(--leaf); font-size: 0.72rem; font-weight: 650; }
+.menu-drawer a:hover {
+  background: var(--sprout-soft);
+  border-color: #ccebd9;
+}
+
+.menu-drawer a:hover .menu-label { color: var(--leaf-dark); }
+
+/* Where you are: the soft tint. */
+.menu-drawer a.active {
+  background: var(--brocco-current);
+  border-color: transparent;
+}
+
+.menu-drawer a.active .menu-label { color: var(--brocco-current-ink); }
+
 .menu-label {
   font-family: 'Quicksand', ui-rounded, sans-serif;
   font-size: clamp(1.2rem, 2vw, 1.65rem);
   font-weight: 650;
   letter-spacing: -0.035em;
 }
-.menu-note { color: var(--muted); font-size: 0.78rem; }
 
-.home-intro { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 8vw, 6.5rem); }
-.home-intro h1 { max-width: 12ch; margin-bottom: 1.4rem; font-size: clamp(3.1rem, 8.5vw, 6.3rem); }
-.intro-copy { max-width: 38rem; margin: 0 0 1.5rem; color: var(--ink-soft); font-size: clamp(1.1rem, 2.2vw, 1.35rem); }
-.text-link {
+/* Links in the site's green, underlined only on hover. */
+.text-link,
+.content-back-link,
+.prose a {
   color: var(--link);
+  text-decoration: none;
+}
+
+:is(.text-link, .content-back-link, .prose a):hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.text-link {
   font-family: 'Quicksand', ui-rounded, sans-serif;
   font-weight: 650;
-  text-decoration: none;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.3em;
 }
-
-.text-link:hover { color: var(--link-hover); text-decoration: underline; }
-
-.experience-stage {
-  position: relative;
-  display: grid;
-  min-height: clamp(31rem, 76vh, 48rem);
-  padding: clamp(1.5rem, 4vw, 3.5rem);
-  overflow: hidden;
-  align-items: end;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  box-shadow: none;
-  isolation: isolate;
-}
-
-.experience-grid {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  opacity: 0.3;
-  background-image:
-    linear-gradient(rgba(45, 155, 95, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(45, 155, 95, 0.16) 1px, transparent 1px);
-  background-size: 3.25rem 3.25rem;
-  mask-image: linear-gradient(to bottom, black, transparent 82%);
-}
-
-.experience-orbit { display: none; }
-.orbit-one { top: -14rem; right: -7rem; width: clamp(27rem, 58vw, 52rem); aspect-ratio: 1; }
-.orbit-two { top: -3rem; right: 4rem; width: clamp(17rem, 37vw, 34rem); aspect-ratio: 1; }
-
-.experience-copy {
-  max-width: 39rem;
-  padding: clamp(1.3rem, 3vw, 2rem);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-}
-.experience-copy h2 { max-width: 12ch; margin-bottom: 1rem; font-size: clamp(2.4rem, 5vw, 4.6rem); }
-.experience-copy p:last-child { max-width: 34rem; margin: 0; color: var(--ink-soft); }
-
-.experience-stamp {
-  position: absolute;
-  top: clamp(1.5rem, 4vw, 3.5rem);
-  right: clamp(1.5rem, 4vw, 3.5rem);
-  display: grid;
-  place-items: end;
-  color: var(--leaf-dark);
-  font-family: 'Quicksand', ui-rounded, sans-serif;
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-.experience-stamp span { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; }
-.experience-stamp strong { font-size: clamp(3rem, 7vw, 6rem); }
-
-.section-map { padding: clamp(3.5rem, 8vw, 6rem) 0; }
-.section-heading h2 { max-width: 13ch; margin-bottom: 2.5rem; font-size: clamp(2.4rem, 6vw, 4rem); }
-.section-links { border-top: 1px solid var(--line); }
-.section-link {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr) auto;
-  padding: 1.3rem 0.25rem;
-  gap: 0.75rem;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
-  text-decoration: none;
-  transition: padding 160ms ease, color 160ms ease;
-}
-.section-link:hover { padding-inline: 0.75rem; color: var(--leaf-dark); }
-.section-link-number { color: var(--leaf); font-size: 0.75rem; font-weight: 650; }
-.section-link strong { display: block; font-family: 'Quicksand', ui-rounded, sans-serif; font-size: 1.35rem; }
-.section-link small { display: block; color: var(--muted); font-size: 0.9rem; }
-.section-link-arrow { font-size: 1.15rem; }
 
 .site-footer {
   display: flex;
@@ -300,12 +224,18 @@ p { text-wrap: wrap; }
   .site-header { min-height: 4.5rem; }
   .desktop-header-nav { display: none; }
   .site-menu--mobile { display: block; }
-  .menu-drawer nav { grid-template-columns: 1fr; }
-  .menu-drawer a { grid-template-columns: 1.75rem minmax(0, 1fr); padding-block: 0.75rem; }
-  .menu-note { display: none; }
-  .home-intro { padding-top: 4.25rem; }
-  .experience-stage { width: calc(100% - 1rem); min-height: 34rem; }
-  .experience-stamp { right: 1.5rem; }
+  .menu-drawer nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .menu-drawer a {
+    display: flex;
+    min-height: 4.25rem;
+    padding: 0.75rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .menu-drawer .menu-label {
+    font-size: clamp(0.95rem, 4.5vw, 1.1rem);
+    white-space: nowrap;
+  }
   .site-footer { padding-bottom: 1.5rem; }
 }
 

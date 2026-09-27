@@ -16,7 +16,7 @@ const games = [
   <header class="content-header category-title category-width"><h1>game writeups</h1></header>
   <section class="game-grid category-grid category-width" aria-label="Games">
     {games.map((game) => (
-      <a class="game-card minimal" href={game.href}>
+      <a class="game-card" href={game.href}>
         <span class:list={['game-art', `game-art--${game.imageFit}`]}>
           <Image src={game.image} alt="" layout="full-width" decoding="async" />
         </span>
