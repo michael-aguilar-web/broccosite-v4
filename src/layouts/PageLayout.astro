@@ -10,7 +10,6 @@ interface Props {
   description?: string;
   section?: string;
   pageClass?: string;
-  noindex?: boolean;
 }
 
 const {
@@ -18,7 +17,6 @@ const {
   description = 'Michael’s personal site.',
   section = '',
   pageClass = '',
-  noindex = false,
 } = Astro.props;
 ---
 
@@ -29,7 +27,6 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/png" href="/broccocolon3.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
